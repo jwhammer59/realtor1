@@ -1,14 +1,12 @@
 import { getAuth, updateProfile } from 'firebase/auth';
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 export default function Profile() {
   const auth = getAuth();
-  const navigate = useNavigate();
   const [changeDetail, setChangeDetail] = useState(false);
   const [formData, setFormData] = useState({
     name: auth.currentUser.displayName,
@@ -16,11 +14,6 @@ export default function Profile() {
   });
 
   const { name, email } = formData;
-
-  function onLogout() {
-    auth.signOut();
-    navigate('/');
-  }
 
   function onChange(e) {
     setFormData((prevState) => ({
@@ -51,7 +44,7 @@ export default function Profile() {
 
   return (
     <>
-      <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
+      <section className="max-w-6xl mx-auto flex justify-center items-center flex-col bg-gray-100 mt-6 rounded shadow-lg">
         <h1 className="text-3xl text-center mt-5">My Profile</h1>
         <div className="w-rull md:w-[50%] mt-6 px-3">
           <form>
@@ -76,7 +69,7 @@ export default function Profile() {
               className="mb-6 w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out"
             />
 
-            <div className="flex justify-between whitespace-nowrap text-sm lg:text-lg mb-6">
+            <div className="flex justify-center whitespace-nowrap text-sm lg:text-lg mb-6">
               <p className="flex items-center">
                 Do you want to change your name?{' '}
                 <span
@@ -84,17 +77,10 @@ export default function Profile() {
                     changeDetail && onSubmit();
                     setChangeDetail((prevState) => !prevState);
                   }}
-                  className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1 cursor-pointer"
+                  className="text-red-600 font-semibold hover:text-red-700 transition duration-200 ease-in-out ml-6 cursor-pointer"
                 >
                   {changeDetail ? 'Apply Change' : 'Edit'}
                 </span>
-              </p>
-
-              <p
-                onClick={onLogout}
-                className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out cursor-pointer"
-              >
-                Sign out
               </p>
             </div>
           </form>

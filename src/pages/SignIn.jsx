@@ -35,8 +35,8 @@ export default function SignIn() {
     }
   }
   return (
-    <section>
-      <div className="text-3xl text-center mt-6 font-bold">Sign In</div>
+    <section className="bg-gray-100 m-5 rounded-lg shadow-lg">
+      <div className="text-3xl text-center pt-3 font-bold">Sign In</div>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
         <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
           <img
