@@ -86,7 +86,7 @@ export default function SignIn() {
                 Don't have an account?
                 <Link
                   className="text-red-600 hover:text-red-700 transition duration-150 ease-in-out ml-2"
-                  to="/sign-in"
+                  to="/sign-up"
                 >
                   Register
                 </Link>
