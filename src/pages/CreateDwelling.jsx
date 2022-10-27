@@ -19,12 +19,16 @@ export default function CreateDwelling() {
     name: '',
     address: '',
     description: '',
+    bedrooms: 1,
+    bathrooms: 1,
+    cost: 0,
+    size: 0,
     latitude: 0,
     longitude: 0,
     images: {},
   });
 
-  const { name, address, description, latitude, longitude, images } = formData;
+  const { name, address, description, bedrooms, bathrooms, cost, size, latitude, longitude, images } = formData;
 
   function onChange(e) {
     let boolean = null;
@@ -218,6 +222,66 @@ export default function CreateDwelling() {
               required
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 mb-6"
             />
+          </div>
+          <div className="flex space-x-6 mb-6">
+            <div className="w-full">
+              <p className="text-lg font-semibold">Beds</p>
+              <input
+                type="number"
+                id="bedrooms"
+                value={bedrooms}
+                onChange={onChange}
+                min="1"
+                max="20"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+              />
+            </div>
+            <div className="w-full">
+              <p className="text-lg font-semibold">Baths</p>
+              <input
+                type="number"
+                id="bathrooms"
+                value={bathrooms}
+                onChange={onChange}
+                min="1"
+                max="20"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+              />
+            </div>
+          </div>
+          <div className="flex space-x-6 mb-6">
+            <div className="w-full">
+              <p className="text-lg font-semibold">
+                Value<span className="ml-2">$</span>
+              </p>
+              <input
+                type="number"
+                id="cost"
+                value={cost}
+                onChange={onChange}
+                min="100"
+                max="40000000"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+              />
+            </div>
+            <div className="w-full">
+              <p className="text-lg font-semibold">
+                Size /<span className="text-sm">Sq. Ft.</span>
+              </p>
+              <input
+                type="number"
+                id="size"
+                value={size}
+                onChange={onChange}
+                min="100"
+                max="50000"
+                required
+                className="w-full px-4 py-2 text-xl text-gray-700 bg-white border border-gray-300 rounded transition duration-150 ease-in-out focus:text-gray-700 focus:bg-white focus:border-slate-600 text-center"
+              />
+            </div>
           </div>
           <div className="mb-6">
             <p className="text-lg font-semibold">Images *</p>
