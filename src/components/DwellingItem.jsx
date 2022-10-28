@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import { MdLocationPin } from 'react-icons/md';
+import { FaTrash } from 'react-icons/fa';
+import { MdEdit } from 'react-icons/md';
 
-export default function DwellingItem({ dwelling, id }) {
+export default function DwellingItem({ dwelling, id, onDelete, onEdit }) {
   return (
     <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
       <Link to={`/dwelling/${id}`}>
@@ -38,6 +40,15 @@ export default function DwellingItem({ dwelling, id }) {
           </div>
         </div>
       </Link>
+      {onDelete && (
+        <FaTrash
+          className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500"
+          onClick={() => onDelete(dwelling.id)}
+        />
+      )}
+      {onEdit && (
+        <MdEdit className="absolute bottom-2 right-7 h-[14px] cursor-pointer" onClick={() => onEdit(dwelling.id)} />
+      )}
     </li>
   );
 }

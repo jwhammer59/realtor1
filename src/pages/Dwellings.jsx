@@ -1,15 +1,17 @@
-import { collection, where, query, orderBy, getDocs } from 'firebase/firestore';
+import { collection, where, query, orderBy, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import React from 'react';
 import { useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
 import DwellingItem from '../components/DwellingItem';
+import { toast } from 'react-toastify';
 
 export default function Dwellings() {
   const auth = getAuth();
+  const navigate = useNavigate();
   const [dwellings, setDwellings] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,6 +34,19 @@ export default function Dwellings() {
     fetchUserDwellings();
   }, [auth.currentUser.uid]);
 
+  async function onDelete(dwellingID) {
+    if (window.confirm('Are you sure you want to delete?')) {
+      await deleteDoc(doc(db, 'dwellings', dwellingID));
+      const updateDwellings = dwellings.filter((dwelling) => dwelling.id !== dwellingID);
+      setDwellings(updateDwellings);
+      toast.success('Successfully deleted dwelling!');
+    }
+  }
+
+  function onEdit(dwellingID) {
+    navigate(`/edit-dwelling/${dwellingID}`);
+  }
+
   return (
     <div>
       <header className="flex justify-center mt-6">
@@ -48,7 +63,13 @@ export default function Dwellings() {
             <h2 className="text-2xl text-center font-semibold mb-6">My Dwellings</h2>
             <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 mt-6 mb-6">
               {dwellings.map((dwelling) => (
-                <DwellingItem key={dwelling.id} id={dwelling.id} dwelling={dwelling.data} />
+                <DwellingItem
+                  key={dwelling.id}
+                  id={dwelling.id}
+                  dwelling={dwelling.data}
+                  onDelete={() => onDelete(dwelling.id)}
+                  onEdit={() => onEdit(dwelling.id)}
+                />
               ))}
             </ul>
           </>
