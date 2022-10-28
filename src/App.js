@@ -12,6 +12,7 @@ import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './pages/ForgotPassword';
 import Header from './components/Header';
 import CreateDwelling from './pages/CreateDwelling';
+import EditDwelling from './pages/EditDwelling';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/create-dwelling" element={<PrivateRoute />}>
             <Route path="/create-dwelling" element={<CreateDwelling />}></Route>
+          </Route>
+          <Route path="/edit-dwelling" element={<PrivateRoute />}>
+            <Route path="/edit-dwelling/:dwellingId" element={<EditDwelling />}></Route>
           </Route>
           <Route path="/dwellings" element={<PrivateRoute />}>
             <Route path="/dwellings" element={<Dwellings />}></Route>
