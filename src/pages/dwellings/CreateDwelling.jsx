@@ -1,22 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { FcHome } from 'react-icons/fc';
-import Spinner from '../components/Spinner';
+import Spinner from '../../components/Spinner';
 import { toast } from 'react-toastify';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { getAuth } from 'firebase/auth';
 import { v4 as uuidv4 } from 'uuid';
-import { doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
-export default function EditDwelling() {
+export default function CreateDwelling() {
   const navigate = useNavigate();
   const auth = getAuth();
   const [geolocationEnabled, setGeolocationEnabled] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [dwelling, setDwelling] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     address: '',
@@ -31,32 +29,6 @@ export default function EditDwelling() {
   });
 
   const { name, address, description, bedrooms, bathrooms, cost, size, latitude, longitude, images } = formData;
-
-  const params = useParams();
-
-  useEffect(() => {
-    if (dwelling && dwelling.userRef !== auth.currentUser.uid) {
-      toast.error('You cannot edit this dwelling!');
-      navigate('/');
-    }
-  }, [auth.currentUser.uid, dwelling, navigate]);
-
-  useEffect(() => {
-    setLoading(true);
-    async function fetchDwelling() {
-      const docRef = doc(db, 'dwellings', params.dwellingId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setDwelling(docSnap.data());
-        setFormData({ ...docSnap.data() });
-        setLoading(false);
-      } else {
-        navigate('/');
-        toast.error('Dwelling does not exist');
-      }
-    }
-    fetchDwelling();
-  }, [navigate, params.dwellingId]);
 
   function onChange(e) {
     let boolean = null;
@@ -169,10 +141,9 @@ export default function EditDwelling() {
     delete formDataCopy.images;
     delete formDataCopy.latitude;
     delete formDataCopy.longitude;
-    const docRef = doc(db, 'dwellings', params.dwellingId);
-    await updateDoc(docRef, formDataCopy);
+    const docRef = await addDoc(collection(db, 'dwellings'), formDataCopy);
     setLoading(false);
-    toast.success('Dwelling updated!');
+    toast.success('Dwelling created');
     navigate(`/dwellings/${docRef.id}`);
   }
 
@@ -181,7 +152,7 @@ export default function EditDwelling() {
   }
   return (
     <main>
-      <h1 className="text-3xl text-center mt-6 font-semibold">Edit Dwelling</h1>
+      <h1 className="text-3xl text-center mt-6 font-semibold">Create Dwelling</h1>
       <form onSubmit={onSubmit}>
         <div className="max-w-lg px-2 mx-auto">
           <div>
@@ -331,7 +302,7 @@ export default function EditDwelling() {
           >
             <div className="flex justify-center items-center">
               <FcHome className="mr-6 bg-red-300 rounded-full p-1 border-2 text-3xl" />
-              Edit Dwelling
+              Add Dwelling
             </div>
           </button>
         </div>

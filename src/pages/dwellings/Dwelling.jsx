@@ -3,12 +3,14 @@ import React from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
-import Spinner from '../components/Spinner';
-import { db } from '../firebase';
+import { Link } from 'react-router-dom';
+import Spinner from '../../components/Spinner';
+import { db } from '../../firebase';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectFade, Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css/bundle';
-import { FaMapMarkerAlt, FaBed, FaBath } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaBed, FaBath, FaArrowCircleRight } from 'react-icons/fa';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 export default function Dwelling() {
   const params = useParams();
@@ -75,8 +77,33 @@ export default function Dwelling() {
               {+dwelling.bathrooms > 1 ? `${dwelling.bathrooms} Baths` : '1 Bath'}
             </li>
           </ul>
+          <div className="mt-6">
+            <button className="w-full text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer transition duration-150 ease-in-out">
+              <Link to={`/rooms/room/${params.dwellingId}`} className="flex justify-center items-center">
+                See All Rooms
+                <FaArrowCircleRight className="ml-5 text-xl" />
+              </Link>
+            </button>
+          </div>
         </div>
-        <div className="bg-blue-300 w-full h-[200px] lg-[400px] z-10 overflow-x-hidden"></div>
+        <div className="w-full h-[200px] md:h-[400px] z-10 overflow-x-hidden mt-6 lg:mt-0">
+          <MapContainer
+            center={[dwelling.geolocation.lat, dwelling.geolocation.lng]}
+            zoom={13}
+            scrollWheelZoom={false}
+            style={{ height: '100%', width: '100%' }}
+          >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[dwelling.geolocation.lat, dwelling.geolocation.lng]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
+        </div>
       </div>
     </main>
   );

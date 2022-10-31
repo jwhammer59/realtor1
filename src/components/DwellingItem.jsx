@@ -8,7 +8,7 @@ import { MdEdit } from 'react-icons/md';
 export default function DwellingItem({ dwelling, id, onDelete, onEdit }) {
   return (
     <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
-      <Link to={`/dwelling/${id}`}>
+      <Link to={`/dwellings/dwelling/${id}`}>
         <img
           className="h-[340px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-out"
           loading="lazy"

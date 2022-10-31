@@ -3,10 +3,10 @@ import React from 'react';
 import { useEffect } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { getAuth } from 'firebase/auth';
 import { useState } from 'react';
-import DwellingItem from '../components/DwellingItem';
+import DwellingItem from '../../components/DwellingItem';
 import { toast } from 'react-toastify';
 
 export default function Dwellings() {
@@ -44,14 +44,14 @@ export default function Dwellings() {
   }
 
   function onEdit(dwellingID) {
-    navigate(`/edit-dwelling/${dwellingID}`);
+    navigate(`/dwellings/edit-dwelling/${dwellingID}`);
   }
 
   return (
     <div>
       <header className="flex justify-center mt-6">
         <button className="text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer ">
-          <Link to="/create-dwelling" className="flex justify-center items-center">
+          <Link to="/dwellings/create-dwelling" className="flex justify-center items-center">
             <FaPlus className="mr-2 bg-red-400 rounded-full p-1 border-2 text-2xl" />
             Add Dwelling
           </Link>

@@ -59,9 +59,9 @@ export default function Header() {
             </li>
             <li
               className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute('/dwellings') && 'text-black border-b-red-500'
+                pathMatchRoute('/dwellings/dwellings') && 'text-black border-b-red-500'
               }`}
-              onClick={() => navigate('/dwellings')}
+              onClick={() => navigate('/dwellings/dwellings')}
               hidden={pageState === 'Sign In' ? true : false}
             >
               Dwellings
