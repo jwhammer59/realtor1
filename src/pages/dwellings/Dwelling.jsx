@@ -1,11 +1,16 @@
-import { doc, getDoc } from 'firebase/firestore';
 import React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import Spinner from '../../components/Spinner';
+
+// Firebase Imports
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
+
+// Component Imports
+import Spinner from '../../components/Spinner';
+
+// Third Party Library Imports
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { EffectFade, Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css/bundle';

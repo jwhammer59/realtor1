@@ -1,13 +1,18 @@
-import { collection, where, query, orderBy, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import React from 'react';
-import { useEffect } from 'react';
-import { FaPlus } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { db } from '../../firebase';
+
+// Firebase Imports
 import { getAuth } from 'firebase/auth';
-import { useState } from 'react';
+import { collection, where, query, orderBy, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../firebase';
+
+// Component Imports
 import DwellingItem from '../../components/DwellingItem';
+
+// Third Party Imports
 import { toast } from 'react-toastify';
+import { FaPlus } from 'react-icons/fa';
 
 export default function Dwellings() {
   const auth = getAuth();

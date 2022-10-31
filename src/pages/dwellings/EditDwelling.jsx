@@ -1,15 +1,20 @@
 import React from 'react';
-import { useState } from 'react';
-import { FcHome } from 'react-icons/fc';
-import Spinner from '../../components/Spinner';
-import { toast } from 'react-toastify';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { getAuth } from 'firebase/auth';
-import { v4 as uuidv4 } from 'uuid';
-import { doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+
+// Firebase Imports
+import { getAuth } from 'firebase/auth';
+import { doc, getDoc, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { db } from '../../firebase';
+
+// Component Imports
+import Spinner from '../../components/Spinner';
+
+// Third Party Imports
+import { FcHome } from 'react-icons/fc';
+import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function EditDwelling() {
   const navigate = useNavigate();

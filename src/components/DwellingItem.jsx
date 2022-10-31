@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+// Third Party Imports
 import Moment from 'react-moment';
 import { MdLocationPin } from 'react-icons/md';
 import { FaTrash } from 'react-icons/fa';

@@ -1,8 +1,7 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useEffect } from 'react';
 
 export default function Header() {
   const [pageState, setPageState] = useState('Sign In');

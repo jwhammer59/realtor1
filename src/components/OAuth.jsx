@@ -1,10 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// Firebase Imports
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+
+// Third Party Imports
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 
 export default function OAuth() {
   const navigate = useNavigate();
