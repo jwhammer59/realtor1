@@ -48,14 +48,14 @@ function App() {
           </Route>
 
           {/* Room Routes */}
-          <Route path="/rooms/rooms" element={<PrivateRoute />}>
-            <Route path="/rooms/rooms" element={<Rooms />}></Route>
+          <Route path="/rooms/rooms/:dwellingId" element={<PrivateRoute />}>
+            <Route path="/rooms/rooms/:dwellingId" element={<Rooms />}></Route>
           </Route>
           <Route path="/rooms/room/:roomId" element={<PrivateRoute />}>
             <Route path="/rooms/room/:roomId" element={<Room />}></Route>
           </Route>
-          <Route path="/rooms/create-room" element={<PrivateRoute />}>
-            <Route path="/rooms/create-room" element={<CreateRoom />}></Route>
+          <Route path="/rooms/create-room/:dwellingId" element={<PrivateRoute />}>
+            <Route path="/rooms/create-room/:dwellingId" element={<CreateRoom />}></Route>
           </Route>
           <Route path="/rooms/edit-room/:roomId" element={<PrivateRoute />}>
             <Route path="/rooms/edit-room/:roomId" element={<EditRoom />}></Route>

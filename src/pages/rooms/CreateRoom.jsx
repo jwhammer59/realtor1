@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 // Firebase Imports
 import { getAuth } from 'firebase/auth';
@@ -19,6 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 export default function CreateRoom() {
   const navigate = useNavigate();
   const auth = getAuth();
+  const params = useParams();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -30,6 +31,7 @@ export default function CreateRoom() {
   const { name, description, roomLevel, images } = formData;
 
   function onChange(e) {
+    console.log(e);
     let boolean = null;
     if (e.target.files === 'true') {
       boolean = true;
@@ -53,7 +55,15 @@ export default function CreateRoom() {
     }
   }
 
+  function onHandleSelectChange(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      roomLevel: e.target.value,
+    }));
+  }
+
   async function onSubmit(e) {
+    console.log(auth);
     e.preventDefault();
     setLoading(true);
     if (images.length > 3) {
@@ -89,6 +99,7 @@ export default function CreateRoom() {
           (error) => {
             // Handle unsuccessful uploads
             reject(error);
+            console.log('error');
           },
           () => {
             // Handle successful uploads on complete
@@ -112,12 +123,13 @@ export default function CreateRoom() {
       imgUrls,
       timestamp: serverTimestamp(),
       userRef: auth.currentUser.uid,
+      dwellingId: params.dwellingId,
     };
     delete formDataCopy.images;
     const docRef = await addDoc(collection(db, 'rooms'), formDataCopy);
     setLoading(false);
     toast.success('Room created');
-    navigate(`/rooms/${docRef.id}`);
+    navigate(`/rooms/room/${docRef.id}`);
   }
 
   if (loading) {
@@ -158,11 +170,11 @@ export default function CreateRoom() {
           <div className="flex space-x-6 mb-6">
             <div className="w-full">
               <p className="text-lg font-semibold">Room Level</p>
-              <select value={roomLevel} name="roomLevel" id="roomLevel">
-                <option value="first-floor">1st Floor</option>
+              <select value={roomLevel} name="roomLevel" id="roomLevel" onChange={onHandleSelectChange}>
+                <option value="first floor">1st Floor</option>
                 <option value="basement">Basement</option>
-                <option value="second-floor">2nd Floor</option>
-                <option value="third-floor">3rd Floor</option>
+                <option value="second floor">2nd Floor</option>
+                <option value="third floor">3rd Floor</option>
                 <option value="other">Other</option>
               </select>
             </div>

@@ -84,7 +84,7 @@ export default function Dwelling() {
           </ul>
           <div className="mt-6">
             <button className="w-full text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer transition duration-150 ease-in-out">
-              <Link to={`/rooms/room/${params.dwellingId}`} className="flex justify-center items-center">
+              <Link to={`/rooms/rooms/${params.dwellingId}`} className="flex justify-center items-center">
                 See All Rooms
                 <FaArrowCircleRight className="ml-5 text-xl" />
               </Link>

@@ -150,7 +150,7 @@ export default function CreateDwelling() {
     const docRef = await addDoc(collection(db, 'dwellings'), formDataCopy);
     setLoading(false);
     toast.success('Dwelling created');
-    navigate(`/dwellings/${docRef.id}`);
+    navigate(`/dwellings/dwelling/${docRef.id}`);
   }
 
   if (loading) {

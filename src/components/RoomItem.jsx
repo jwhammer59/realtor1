@@ -7,7 +7,7 @@ import { MdRoom } from 'react-icons/md';
 import { FaTrash } from 'react-icons/fa';
 import { MdEdit } from 'react-icons/md';
 
-export default function RoomItem(room, id, onDelete, onEdit) {
+export default function RoomItem({ room, id, onDelete, onEdit }) {
   return (
     <li className="relative bg-white flex flex-col justify-between items-center shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px]">
       <Link to={`/rooms/room/${id}`}>
@@ -27,6 +27,9 @@ export default function RoomItem(room, id, onDelete, onEdit) {
           <div className="flex items-center space-x-1">
             <MdRoom className="h-4 w-4 text-green-600" />
             <p className="font-semibold m-0 text-xl">{room.name}</p>
+          </div>
+          <div>
+            <p className="capitalize ml-1">{room.roomLevel}</p>
           </div>
         </div>
       </Link>

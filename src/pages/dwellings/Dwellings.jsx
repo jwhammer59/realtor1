@@ -24,6 +24,7 @@ export default function Dwellings() {
     async function fetchUserDwellings() {
       setLoading(true);
       const dwellingRef = collection(db, 'dwellings');
+      console.log(dwellingRef);
       const q = query(dwellingRef, where('userRef', '==', auth.currentUser.uid), orderBy('timestamp', 'desc'));
       const querySnap = await getDocs(q);
       let dwellings = [];
@@ -35,6 +36,7 @@ export default function Dwellings() {
       });
       setDwellings(dwellings);
       setLoading(false);
+      console.log(dwellings);
     }
     fetchUserDwellings();
   }, [auth.currentUser.uid]);
