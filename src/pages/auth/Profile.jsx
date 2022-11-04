@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
 export default function Profile() {
   const auth = getAuth();

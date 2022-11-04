@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiFillEyeInvisible, AiFillEye } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import OAuth from '../components/OAuth';
+import OAuth from '../../components/OAuth';
 import { signInWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
 

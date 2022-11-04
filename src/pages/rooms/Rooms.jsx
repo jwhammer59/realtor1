@@ -61,9 +61,9 @@ export default function Rooms() {
       <header className="flex justify-center mt-6">
         <button
           onClick={onClickHandled}
-          className="flex items-center text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer "
+          className="flex items-center text-green-600 hover:text-white text-lg font-medium uppercase px-4 py-2 rounded border-2 border-green-600 hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer "
         >
-          <FaPlus className="mr-2 bg-red-400 rounded-full p-1 border-2 text-2xl" />
+          <FaPlus className="mr-2 rounded-full p-1 text-2xl" />
           Add Room
         </button>
       </header>

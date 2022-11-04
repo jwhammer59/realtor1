@@ -55,9 +55,9 @@ export default function Dwellings() {
   return (
     <div>
       <header className="flex justify-center mt-6">
-        <button className="text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer ">
+        <button className="text-green-600 text-lg font-medium uppercase px-4 py-2 rounded border-2 border-green-600 hover:bg-green-600 hover:text-white shadow-md hover:shadow-lg cursor-pointer ">
           <Link to="/create-dwelling" className="flex justify-center items-center">
-            <FaPlus className="mr-2 bg-red-400 rounded-full p-1 border-2 text-2xl" />
+            <FaPlus className="mr-2 rounded-full p-1 text-2xl" />
             Add Dwelling
           </Link>
         </button>
