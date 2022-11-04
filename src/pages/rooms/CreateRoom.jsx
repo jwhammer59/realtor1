@@ -129,7 +129,7 @@ export default function CreateRoom() {
     const docRef = await addDoc(collection(db, 'rooms'), formDataCopy);
     setLoading(false);
     toast.success('Room created');
-    navigate(`/rooms/room/${docRef.id}`);
+    navigate(`/room/${docRef.id}`);
   }
 
   if (loading) {

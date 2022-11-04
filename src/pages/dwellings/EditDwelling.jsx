@@ -178,7 +178,7 @@ export default function EditDwelling() {
     await updateDoc(docRef, formDataCopy);
     setLoading(false);
     toast.success('Dwelling updated!');
-    navigate(`/dwellings/${docRef.id}`);
+    navigate(`/dwelling/${docRef.id}`);
   }
 
   if (loading) {

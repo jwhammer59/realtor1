@@ -49,11 +49,11 @@ export default function Rooms() {
   }
 
   function onEdit(roomID) {
-    navigate(`/rooms/edit-room/${roomID}`);
+    navigate(`/edit-room/${roomID}`);
   }
 
   function onClickHandled() {
-    navigate(`/rooms/create-room/${params.dwellingId}`);
+    navigate(`/create-room/${params.dwellingId}`);
   }
 
   return (

@@ -60,7 +60,7 @@ export default function Dwelling() {
         ))}
       </Swiper>
       <div className="flex flex-col md:flex-row max-w-6xl lg:mx-auto m-4 p-4 rounded-lg shadow-lg bg-white md:space-x-5">
-        <div className="w-full h-[200px] lg-[400px]">
+        <div className="w-full h-[200px] lg:h-[400px]">
           <p className="text-2xl font-bold mb-3 text-blue-900">
             {dwelling.name} - ${dwelling.cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
           </p>
@@ -84,7 +84,7 @@ export default function Dwelling() {
           </ul>
           <div className="mt-6">
             <button className="w-full text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer transition duration-150 ease-in-out">
-              <Link to={`/rooms/rooms/${params.dwellingId}`} className="flex justify-center items-center">
+              <Link to={`/rooms/${params.dwellingId}`} className="flex justify-center items-center">
                 See All Rooms
                 <FaArrowCircleRight className="ml-5 text-xl" />
               </Link>

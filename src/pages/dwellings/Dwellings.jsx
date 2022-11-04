@@ -24,7 +24,6 @@ export default function Dwellings() {
     async function fetchUserDwellings() {
       setLoading(true);
       const dwellingRef = collection(db, 'dwellings');
-      console.log(dwellingRef);
       const q = query(dwellingRef, where('userRef', '==', auth.currentUser.uid), orderBy('timestamp', 'desc'));
       const querySnap = await getDocs(q);
       let dwellings = [];
@@ -36,7 +35,6 @@ export default function Dwellings() {
       });
       setDwellings(dwellings);
       setLoading(false);
-      console.log(dwellings);
     }
     fetchUserDwellings();
   }, [auth.currentUser.uid]);
@@ -51,14 +49,14 @@ export default function Dwellings() {
   }
 
   function onEdit(dwellingID) {
-    navigate(`/dwellings/edit-dwelling/${dwellingID}`);
+    navigate(`/edit-dwelling/${dwellingID}`);
   }
 
   return (
     <div>
       <header className="flex justify-center mt-6">
         <button className="text-white text-lg font-medium uppercase bg-green-500 px-4 py-2 rounded hover:bg-green-600 shadow-md hover:shadow-lg cursor-pointer ">
-          <Link to="/dwellings/create-dwelling" className="flex justify-center items-center">
+          <Link to="/create-dwelling" className="flex justify-center items-center">
             <FaPlus className="mr-2 bg-red-400 rounded-full p-1 border-2 text-2xl" />
             Add Dwelling
           </Link>
